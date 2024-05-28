@@ -36,17 +36,14 @@
             username: 'emilys',
             password: 'emilyspass'
         })
-        const nilaiToken = axios.create({
-            baseURL: 'https://dummyjson.com/auth/me',
-            headers: {
-                'authorization ': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MTY2MjU1NjksImV4cCI6MTcxNjYyOTE2OX0.GO-lfeoPb-RsnZ6Puv6y-AFu-ZArIFUo7ohJxGsWqhU'
-            }
+        .then(res => { 
+            axios.get('https://dummyjson.com/auth/me', {
+                headers: {
+                    authorization : 'Bearer ' + res.data.token
+                }
+            })
+            .then(res => console.log(res.data))
         })
-        nilaiToken.get()
-        .then(res => console.log(res.data))
-        
-
-
 
     </script>
 </body>
